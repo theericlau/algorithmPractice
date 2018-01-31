@@ -38,7 +38,7 @@ const merge = (array1, array2) => {
   let index2 = 0;
   //if array1 is smaller than array2
   while (combinedArray.length !== (array1.length + array2.length)){
-    if (array1[index1] < array2[index2]){
+    if (array1[index1] < array2[index2] || !array2[index2]){
       //push array1 into the combined array
       //increment oneindex
       combinedArray.push(array1[index1]);
@@ -56,8 +56,20 @@ const merge = (array1, array2) => {
 }
 
 const mergeSort = array => {
-
+  if (array.length < 2){
+    return array;
+  }
+  debugger;
+  var leftHalf = array.slice(0, array.length / 2);
+  var rightHalf = array.slice(array.length / 2);
+  let leftSide = mergeSort(leftHalf);
+  let rightSide = mergeSort(rightHalf);
+  return merge(leftSide, rightSide);
 }
+arr = [1, 10, 3, 5, 8, 14, 2]
+// console.log(arr.length/2);
+// console.log(arr.slice(0, arr.length / 2))
+// console.log(arr.slice(arr.length / 2))
 
 console.log(mergeSort([1,10,3,5,8,14,2]));
 // console.log(merge([1,6,8,12], [3,7,8,9,24]));
