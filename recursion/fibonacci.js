@@ -12,10 +12,10 @@ What is the time complexity? Can you think of optimizing your solution? (Hint: l
 const fibonacci = n => {
   if (n === 0) {
     return 0;
-  } else if ( n <= 2) {
+  } else if ( n === 1) {
     return 1;
   }
   return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
-console.log(fibonacci(3));
+console.log(fibonacci(9));
