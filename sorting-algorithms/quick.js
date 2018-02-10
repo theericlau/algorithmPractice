@@ -26,34 +26,51 @@ Variants:
 Iterate through array and if element <= pivot, swap element before pivot location
 */
 const quickSort = array => {
+  let pivot = array[array.length - 1];
+  let left, right;
 
-}
-
-
-function getDifferentNumber(arr) {
-  // your code goes here
-  // variable that equals the minimum integer has gap
-  let smallestInt;
-  // sort the array in chronological order
-  let newArr = arr.sort((current, next) => {
-    if (current < next) {
-      return -1;
-    } else {
-      return 1;
-    }
-  })
-  // loop into the array to check current and the next number
-  for (let i = 0; i < newArr.length; i++) {
-    //if there's a gap in between
-    if (newArr[i + 1] - newArr[i] > 1) {
-      //set variable to this index
-      smallestInt = newArr[i] + 1;
-      break;
-    } else if (i === newArr.length - 1) {
-      smallestInt = newArr[i] + 1;
-    }
+  array = partition(array);
+  let newIndex = array.indexOf(pivot);
+  if (array.length !== 0) {
+    left = partition(array.slice(0, newIndex));
+    right = partition(array.slice(newIndex, array.length));
   }
-
-  //return the variable
-  return smallestInt;
+  return [...left, ...right];
 }
+
+const partition = (array, start, end) => {
+  let startIndex = start || 0;
+  let endIndex = end || array.length - 1;
+  // console.log('i get in here')
+
+  for (let i = 0; startIndex < endIndex ; i++ ) {
+    // console.log('start', startIndex, 'end', endIndex);
+    if (array[endIndex] >= array[startIndex]) {
+      //we continue loop
+      startIndex++;
+    } else {
+      //we swap end with current
+      array = swap(array, startIndex, endIndex);
+      // console.log('first', array);
+      //we swap currentIndex with end - 1
+      array = swap(array, startIndex, endIndex - 1);
+      // console.log('second', array)
+      endIndex--;
+    }
+    // if end index is less than current index
+  }
+  return array;
+}
+
+const swap = (array, index1, index2) => {
+  let temp = array[index1];
+  array[index1] = array[index2];
+  array[index2] = temp;
+  return array;
+}
+
+const example = [2,7,3,9,6,4,5];
+console.log(quickSort(example));
+
+//why quickSort - worst case is n^2 but its really unlikely
+//the reason why its nlogn is the n is looping thru entire array

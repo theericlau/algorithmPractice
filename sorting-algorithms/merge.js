@@ -28,7 +28,6 @@ subarrays for regular merge sort: [ [1], [2], [4], [5], [9] ]
 subarrays for natural merge sort: [ [1,2], [4,5], [9] ]
 
 */
-
 const merge = (array1, array2) => {
   //combinedArray
   let combinedArray = [];
@@ -71,6 +70,6 @@ arr = [1, 10, 3, 5, 8, 14, 2]
 // console.log(arr.slice(0, arr.length / 2))
 // console.log(arr.slice(arr.length / 2))
 
-console.log(mergeSort([1,10,3,5,8,14,2]));
+// console.log(mergeSort([1,10,3,5,8,14,2]));
 // console.log(merge([1,6,8,12], [3,7,8,9,24]));
 //Time Complexity O(n);
