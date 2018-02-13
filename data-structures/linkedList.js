@@ -88,20 +88,33 @@ function Node(value) {
 function LinkedList(headValue) {
   if (headValue === undefined) console.log('Must provide value for first node');
   this.head = new Node(headValue);
+  this.end = this.head;
 }
 
 LinkedList.prototype.forEach = function(callback) {
   // implement me...
-};
-// Time complexity:
+  let node = this.head;
+  while (node !== null) {
+    callback(node.value);
+    node = node.next;
+  }
+}
+
+// Time complexity: Linear
 
 LinkedList.prototype.print = function() {
   // implement me...
+  let result = [];
+  this.forEach((node) => {
+    result.push(node);
+  })
+  console.log(result);
 };
-// Time complexity:
+// Time complexity:O(n)
 
 LinkedList.prototype.insertAfter = function(node, value) {
   // implement me...
+
 };
 // Time complexity:
 
@@ -112,22 +125,42 @@ LinkedList.prototype.removeAfter = function(node) {
 
 LinkedList.prototype.insertHead = function(value) {
   // implement me...
+  let temp = this.head;
+  this.head = new Node(value);
+  this.head.next = temp;
+  if (this.end === temp) {
+    this.end = temp;
+  }
 };
 // Time complexity:
 
 LinkedList.prototype.removeHead = function() {
   // implement me...
+  this.head = this.head.next;
 }
 
 LinkedList.prototype.findNode = function(value) {
   // implement me...
+  let node = this.head;
+  let prev, found;
+  while (node.value !== value) {
+
+    node = this.head.next;
+    if (node.value === value) {
+      prev = node;
+    }
+  }
+  console.log('found it', prev);
 };
-// Time complexity:
+// Time complexity: O(n);
 
 LinkedList.prototype.appendToTail = function(value) {
   // implement me...
+  const node = new Node(value);
+  this.end.next = node;
+  this.end = node;
 };
-// Time complexity:
+// Time complexity: O(1)
 
 
 // PART 2:
@@ -141,6 +174,16 @@ LinkedList.prototype.removeBefore = function(node) {
   // implement me...
 };
 // Time complexity:
+
+var list = new LinkedList(5);
+list.print();
+list.appendToTail(10);
+list.appendToTail(3);
+list.print();
+list.removeHead();
+list.print();
+
+
 
 
 
