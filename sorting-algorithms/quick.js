@@ -50,10 +50,10 @@ const partition = (array, start, end) => {
       startIndex++;
     } else {
       //we swap end with current
-      array = swap(array, startIndex, endIndex);
+      swap(array, startIndex, endIndex);
       // console.log('first', array);
       //we swap currentIndex with end - 1
-      array = swap(array, startIndex, endIndex - 1);
+      swap(array, startIndex, endIndex - 1);
       // console.log('second', array)
       endIndex--;
     }

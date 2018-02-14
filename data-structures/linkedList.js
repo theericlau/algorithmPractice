@@ -114,12 +114,21 @@ LinkedList.prototype.print = function() {
 
 LinkedList.prototype.insertAfter = function(node, value) {
   // implement me...
-
+  let temp = node.next;
+  let newNode = new Node(value);
+  node.next = newNode;
+  newNode.next = temp;
+  if (this.tail === node) {
+    this.tail = newNode;
+  }
+  return newNode
 };
 // Time complexity:
 
 LinkedList.prototype.removeAfter = function(node) {
   // implement me...
+  let removedNode = node.next;
+  node.next = removedNode.next;
 };
 // Time complexity:
 
@@ -143,14 +152,20 @@ LinkedList.prototype.findNode = function(value) {
   // implement me...
   let node = this.head;
   let prev, found;
-  while (node.value !== value) {
-
-    node = this.head.next;
-    if (node.value === value) {
+  while (node) {
+    if (node.next && node.next.value === value) {
       prev = node;
     }
+    if (node.value === value) {
+      found = node;
+      return {
+        found: found,
+        prev: prev
+      }
+    }
+    node = node.next;
   }
-  console.log('found it', prev);
+  return "node is not found";
 };
 // Time complexity: O(n);
 
@@ -182,7 +197,7 @@ list.appendToTail(3);
 list.print();
 list.removeHead();
 list.print();
-
+console.log(list.findNode(3))
 
 
 
