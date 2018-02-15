@@ -25,3 +25,27 @@ hasPalindrome: string s
   if oddOccurances was 1 or less return true
   otherwise return false
 */
+
+
+//One Implementation
+function hasPalindrome(s) {
+  if (s.length === 0) {
+    return false;
+  }
+  const counter = {};
+  let numOfPairs = 0;
+
+  for (let i = 0; i < s.length; i += 1) {
+    counter[s.charAt(i)] = counter[s.charAt(i)] || 0;
+    counter[s.charAt(i)] += 1;
+    if (counter[s.charAt(i)] % 2 === 0) {
+      numOfPairs += 1;
+    }
+  }
+
+  if (numOfPairs * 2 === s.length || numOfPairs * 2 === s.length - 1) {
+    return true;
+  } else {
+    return false;
+  }
+}
