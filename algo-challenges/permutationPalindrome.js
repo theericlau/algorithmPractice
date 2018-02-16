@@ -49,3 +49,7 @@ function hasPalindrome(s) {
     return false;
   }
 }
+
+// console.log(hasPalindrome('civic'), 'should return true');
+// console.log(hasPalindrome('c'), 'should return true');
+// console.log(hasPalindrome(''), 'should return false');
