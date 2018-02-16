@@ -51,6 +51,8 @@ A binary search tree was created by iterating over an array and inserting each e
 
 */
 
+
+
 function BinarySearchTree (value) {
   this.value = value;
   this.left = null;
@@ -59,11 +61,43 @@ function BinarySearchTree (value) {
 
 BinarySearchTree.prototype.insert = function(value) {
   // implement me...
+  const tree = new BinarySearchTree(value);
+  let currentTree = this;
+  while (currentTree) {
+    if (value < currentTree.value) {
+      if (!currentTree.left) {
+        currentTree.left = tree;
+        currentTree = null;
+      } else {
+        currentTree = currentTree.left;
+      }
+    } else if (value > currentTree.value) {
+      if (!currentTree.right) {
+        currentTree.right = tree;
+        currentTree = null;
+      } else {
+        currentTree = currentTree.right;
+      }
+    } else if (value === currentTree.value) {
+      if (!currentTree.right) {
+        currentTree.right = tree;
+        currentTree = null;
+      }
+      currentTree= currentTree.right;
+    }
+  }
 };
 // Time complexity:
 
 BinarySearchTree.prototype.contains = function(value) {
   // implement me...
+  let currentTree = this;
+  while (currentTree) {
+    if (currentTree.value) {
+      return true;
+    }
+  }
+  return false;
 };
 // Time complexity:
 
@@ -92,3 +126,29 @@ BinarySearchTree.prototype.checkIfBalanced = function() {
   // implement me...
 };
 // Time complexity:
+
+
+
+var BST = new BinarySearchTree(10);
+BST.insert(2);
+BST.insert(15);
+BST.insert(3);
+BST.insert(10);
+console.log(BST.contains(10));
+
+console.log(BST);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
