@@ -91,10 +91,17 @@ BinarySearchTree.prototype.insert = function(value) {
 
 BinarySearchTree.prototype.contains = function(value) {
   // implement me...
+  debugger;
   let currentTree = this;
   while (currentTree) {
-    if (currentTree.value) {
+    if (currentTree.value === value) {
       return true;
+    }
+    if (value > currentTree.value) {
+      currentTree = currentTree.right;
+    }
+    else if (value < currentTree.value) {
+      currentTree = currentTree.left;
     }
   }
   return false;
@@ -134,7 +141,7 @@ BST.insert(2);
 BST.insert(15);
 BST.insert(3);
 BST.insert(10);
-console.log(BST.contains(10));
+console.log(BST.contains(12));
 
 console.log(BST);
 
