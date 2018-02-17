@@ -59,39 +59,55 @@ function BinarySearchTree (value) {
   this.right = null;
 }
 
+// BinarySearchTree.prototype.insert = function(value) {
+//   // implement me...
+//   const tree = new BinarySearchTree(value);
+//   let currentTree = this;
+//   while (currentTree) {
+//     if (value < currentTree.value) {
+//       if (!currentTree.left) {
+//         currentTree.left = tree;
+//         currentTree = null;
+//       } else {
+//         currentTree = currentTree.left;
+//       }
+//     } else if (value > currentTree.value) {
+//       if (!currentTree.right) {
+//         currentTree.right = tree;
+//         currentTree = null;
+//       } else {
+//         currentTree = currentTree.right;
+//       }
+//     } else if (value === currentTree.value) {
+//       if (!currentTree.right) {
+//         currentTree.right = tree;
+//         currentTree = null;
+//       }
+//       currentTree= currentTree.right;
+//     }
+//   }
+// };
+
 BinarySearchTree.prototype.insert = function(value) {
-  // implement me...
-  const tree = new BinarySearchTree(value);
-  let currentTree = this;
-  while (currentTree) {
-    if (value < currentTree.value) {
-      if (!currentTree.left) {
-        currentTree.left = tree;
-        currentTree = null;
-      } else {
-        currentTree = currentTree.left;
-      }
-    } else if (value > currentTree.value) {
-      if (!currentTree.right) {
-        currentTree.right = tree;
-        currentTree = null;
-      } else {
-        currentTree = currentTree.right;
-      }
-    } else if (value === currentTree.value) {
-      if (!currentTree.right) {
-        currentTree.right = tree;
-        currentTree = null;
-      }
-      currentTree= currentTree.right;
+  if(value <= this.value) {
+    if (this.left) {
+      this.left.insert(value);
+    } else {
+      this.left = new BinarySearchTree(value);
+    }
+  } else {
+    if (this.right) {
+      this.right.insert(value);
+    } else {
+      this.right = new BinarySearchTree(value);
     }
   }
-};
+  return this;
+}
 // Time complexity:
 
 BinarySearchTree.prototype.contains = function(value) {
   // implement me...
-  debugger;
   let currentTree = this;
   while (currentTree) {
     if (currentTree.value === value) {
@@ -106,7 +122,19 @@ BinarySearchTree.prototype.contains = function(value) {
   }
   return false;
 };
-// Time complexity:
+
+//Another way of writing it
+// BinarySearchTree.prototype.contains = function (value) {
+//   if (this.value === value) return true;
+//   if (value < this.value) {
+//     return !!this.left && this.left.contains(value);
+//   }
+//   if (value > this.value) {
+//     return !!this.right && this.right.contains(value);
+//   }
+//   return false;
+// };
+// Time complexity: Best Case O(log(n));
 
 BinarySearchTree.prototype.traverseDepthFirst_inOrder = function(fn) {
   // implement me...
