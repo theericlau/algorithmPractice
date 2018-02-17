@@ -138,6 +138,7 @@ BinarySearchTree.prototype.contains = function(value) {
 
 BinarySearchTree.prototype.traverseDepthFirst_inOrder = function(fn) {
   // implement me...
+
 };
 // Time complexity:
 
