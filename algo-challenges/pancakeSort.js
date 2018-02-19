@@ -22,13 +22,18 @@ function pancakeSort(arr) {
     //find largestNumber in array
     let k = findLargest(arr.slice(i)) + i;
     //flip
-    flip(arr, k);
+    console.log(k, 'k', arr);
+    flip(arr.slice(i), k);
+    console.log('first flip', arr);
     //first index of array swap with endpointer
     let temp = arr[beginpointer];
     arr[beginpointer] = arr[endpointer]
     arr[endpointer] = temp;
-    flip(arr, arr.length - 1);
+    console.log('switch', arr);
+    flip(arr.slice(i), arr.length - 1);
+    console.log('second flip', arr);
     //decrement the endpointer
+    endpointer--;
     //check for next largest number
   }
   return arr;
@@ -42,6 +47,7 @@ const findLargest = arr => {
       maxNumIndex = i;
     }
   }
+  console.log(maxNumIndex, 'maxNumIndex');
   return maxNumIndex;
 }
 
@@ -65,3 +71,7 @@ const flip = (arr, k) => {
   //return array
   return arr;
 }
+
+arr = [1, 3, 5, 2, 4]
+
+console.log(pancakeSort(arr))
