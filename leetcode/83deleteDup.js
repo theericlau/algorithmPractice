@@ -10,24 +10,8 @@
  * @return {ListNode}
  */
 
+ //Iteration solution;
 var deleteDuplicates = function (head) {
-    // let node = head;
-    // if (node.next && node.next.val !== node.val) {
-    //     return node.next;
-    // }
-    // while (node) {
-    //     if (node.next && node.next.val === node.val) {
-    //         node.next = deleteDuplicates(node.next);
-    //     }
-    //     else if (node.next && node.next.val !== node.val) {
-    //         return node.next;
-    //     } else if (!node.next) {
-    //         return node.next;
-    //     }
-    //     node = node.next;
-    // }
-    // console.log('im head', head);
-    // return head;
   if (head === null || head.next === null) {
     return head;
   }
@@ -42,3 +26,23 @@ var deleteDuplicates = function (head) {
   }
   return head;
 }
+
+
+//Recursive Solution;
+var deleteDuplicatesRec = function (head) {
+  if (head === null || head.next === null) {
+    return head;
+  }
+  let next = head.next;
+  if (head.val === next.val) {
+    while (!next && next !== head.val) {
+      next = next.next;
+    }
+    return deleteDuplicates(next);
+  } else {
+    head.next = deleteDuplicates(next);
+    return head;
+  }
+}
+
+1--> 1--> 2 ---> 3
