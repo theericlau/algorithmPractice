@@ -28,4 +28,17 @@ var deleteDuplicates = function (head) {
     // }
     // console.log('im head', head);
     // return head;
+  if (head === null || head.next === null) {
+    return head;
+  }
+  let cur = head;
+
+  while (cur.next) {
+    if (cur.val === cur.next.val) {
+      cur.next = cur.next.next;
+    } else {
+      cur = cur.next;
+    }
+  }
+  return head;
 }
