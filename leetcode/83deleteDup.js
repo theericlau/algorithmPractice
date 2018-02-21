@@ -38,9 +38,9 @@ var deleteDuplicatesRec = function (head) {
     while (!next && next !== head.val) {
       next = next.next;
     }
-    return deleteDuplicates(next);
+    return deleteDuplicatesRec(next);
   } else {
-    head.next = deleteDuplicates(next);
+    head.next = deleteDuplicatesRec(next);
     return head;
   }
 }
