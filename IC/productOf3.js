@@ -15,6 +15,8 @@ We can do this in O(n) time and O(1) space.
 */
 
 const arr = [-10, -10, 1, 3, 2];
+const bone = [-10, 10, 5, -9, -1];
+const neg= [-1, -3, -6, -2];
 
 const productOf3 = (arr) => {
   //keep track of the smallest
@@ -39,7 +41,7 @@ const productOf3 = (arr) => {
       product3 = minProd2 * current;
     }
     if (product3 < maxProd2 * current) {
-      product = maxProd2 * current;
+      product3 = maxProd2 * current;
     }
       //if true then set highprod3 to it
     smallest = Math.min(current, smallest);
@@ -48,4 +50,6 @@ const productOf3 = (arr) => {
   //return high3
   return product3;
 }
+
+console.log(productOf3(neg));
 
