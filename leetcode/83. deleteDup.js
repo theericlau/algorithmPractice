@@ -45,4 +45,3 @@ var deleteDuplicatesRec = function (head) {
   }
 }
 
-1--> 1--> 2 ---> 3
