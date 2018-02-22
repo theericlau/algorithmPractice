@@ -11,3 +11,23 @@ return [0, 1].
 
 
 */
+var nums = [2, 7, 11, 15];
+
+
+var twoSums = function(nums, target) {
+  let map = {};
+  let result = [];
+  for (let i = 0; i < nums.length; i++ ) {
+    let neededValue = target - nums[i];
+    if (nums[i] in map) {
+      result.push(i);
+      result.push(map[nums[i]]);
+    } else {
+      map[neededValue] = i;
+    }
+  }
+  console.log(map);
+  return result;
+}
+
+console.log(twoSums(nums, 18));
