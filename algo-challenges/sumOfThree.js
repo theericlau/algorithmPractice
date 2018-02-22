@@ -6,9 +6,10 @@ Consider this array and target sums.
 [ 3, 7, 1, 2, 8, 4, 5]
 
 */
-const arr = [3, 7, 1, 2, 8, 4, 5];
-const sumOfThree = (arr) => {
+const arr = [3, 7, 1, 5];
+const sumOfThree = (arr, target) => {
 
+  return false;
 }
 
-console.log(sumOfThree(arr));
+console.log(sumOfThree(arr, 11));
