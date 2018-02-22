@@ -40,9 +40,15 @@ var twoSumsSet = function(arr, target) {
     //if value we're looking for is in Set
     if (set.has(target - arr[i])){
       //return true
+
+      // if looking for values
       result.push(arr[i]);
       result.push(target-arr[i]);
       return result;
+
+      //if looking for index
+      // index.push(i);
+      // index.push(nums.indexOf(target-arr[i]));
     }
     //if not add into the Set;
     set.add(arr[i]);
