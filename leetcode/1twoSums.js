@@ -31,3 +31,16 @@ var twoSums = function(nums, target) {
 }
 
 console.log(twoSums(nums, 18));
+
+var twoSumsSet = function(arr, target) {
+  let set = new Set();
+  for (let i = 0; i < arr.length; i++) {
+    //if value we're looking for is in Set
+      //return true
+    //if not add into the Set;
+  }
+  return false;
+}
+
+
+console.log(twoSumsSet(nums, 18));
