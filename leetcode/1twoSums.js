@@ -33,14 +33,19 @@ var twoSums = function(nums, target) {
 console.log(twoSums(nums, 18));
 
 var twoSumsSet = function(arr, target) {
+  let result = [];
   let set = new Set();
   for (let i = 0; i < arr.length; i++) {
     //if value we're looking for is in Set
+    if (set.has(target - arr[i])){
       //return true
+      return true;
+    }
     //if not add into the Set;
+    set.add(arr[i]);
   }
   return false;
 }
 
 
-console.log(twoSumsSet(nums, 18));
+console.log(twoSumsSet(nums, 16));
