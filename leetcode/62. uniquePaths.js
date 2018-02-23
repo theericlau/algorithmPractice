@@ -23,10 +23,11 @@ var uniquePaths = function (m, n) {
     map.push(temp);
   }
 
+  //1 solution for vertical
   for (i = 0; i < n; i++) {
     map[0][i] = 1;
   }
-
+  //1 solution for horizontal
   for (i = 0; i < m; i++) {
     map[i][0] = 1;
   }
@@ -40,3 +41,5 @@ var uniquePaths = function (m, n) {
 
   return map[m - 1][n - 1];
 };
+
+//optimize for memoization
