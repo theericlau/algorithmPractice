@@ -30,4 +30,13 @@ var uniquePaths = function (m, n) {
   for (i = 0; i < m; i++) {
     map[i][0] = 1;
   }
+
+  //for each grid inside you add sum of the previous
+  for (i = 1; i < m; i++) {
+    for (j = 1; j < n; j++) {
+      map[i][j] = map[i - 1][j] + map[i][j - 1];
+    }
+  }
+
+  return map[m - 1][n - 1];
 };
