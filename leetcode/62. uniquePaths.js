@@ -18,5 +18,16 @@ var uniquePaths = function (m, n) {
     j;
   //init paths for horizontal
   //init paths for vertical
+  for (i = 0; i < m; i++) {
+    temp = [];
+    map.push(temp);
+  }
+
+  for (i = 0; i < n; i++) {
+    map[0][i] = 1;
+  }
+
+  for (i = 0; i < m; i++) {
+    map[i][0] = 1;
   }
 };
