@@ -8,7 +8,6 @@ var isPalindrome = function (x) {
   let number = x.toString().split('');
   let begin = 0;
   let end = number.length - 1;
-  console.log(number);
   while (end > begin) {
     if (number[begin] !== number[end]) {
       return false;
@@ -19,4 +18,4 @@ var isPalindrome = function (x) {
   return true;
 };
 
-console.log(isPalindrome(20));
+console.log(isPalindrome(-202));
