@@ -30,10 +30,28 @@ Try to do this in one pass.
 //Two passes
 var removeNthFromEnd = function (head, n) {
   //first pass go thru the whole list to check how long it is
+  let length = 0;
+  let lead = head;
   //loop into the list
     //increment counter
+  while (lead) {
+    length += 1;
+    lead = lead.next;
+  }
   //Set pointer to stop at counter -n
+  let stop = length - n;
+  let secondLead = head;
+  let count = 0;
   //loop into the list again til it hits pointer
+  while (secondLead) {
+    if (count === stop) {
+      secondLead.next = secondLead.next.next;
+    }
+    count++;
+    secondLead = secondLead.next;
+  }
     //once it hits the pointer set the next to the next
+  }
   //return head
+  return head;
 };
