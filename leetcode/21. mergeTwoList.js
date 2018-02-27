@@ -29,34 +29,39 @@ var mergeTwoLists = function (l1, l2) {
   let rightPoint = l2;
   //init new List
   let newList;
+  let head = null;
   //loop until l1 and l2 are null
-  while (leftPoint || rightPoint){
+  while (leftPoint || rightPoint) {
     //if newList is undefinied
-      //set newList to equal whichever is smaller l1 or l2
+    //set newList to equal whichever is smaller l1 or l2
     if (!newList) {
-      if (leftPoint.val <= rightPoint.val) {
+      if (!rightPoint || leftPoint && leftPoint.val <= rightPoint.val) {
         newList = new ListNode(leftPoint.val);
         leftPoint = leftPoint.next;
+        head = newList;
       } else {
         newList = new ListNode(rightPoint.val);
         rightPoint = rightPoint.next;
+        head = newList;
       }
     } else {
       //if leftpointer is less than rightpointer
       //set next of newlist to left pointer
       //increment leftpointer
-      if (leftPoint.val <= rightPoint.val) {
-        newList.next = leftPoint;
+      console.log('got in here', newList)
+      if (!rightPoint || leftPoint && leftPoint.val <= rightPoint.val) {
+        newList.next = new ListNode(leftPoint.val);
         leftPoint = leftPoint.next;
       } else {
         //if rightpointer is less than left
-          //set next of newlist to right pointer
-          //increment rightpointer
-        newList.next = rightPoint;
+        //set next of newlist to right pointer
+        //increment rightpointer
+        newList.next = new ListNode(rightPoint.val);
         rightPoint = rightPoint.next;
       }
+      newList = newList.next;
     }
   }
   //return newlist
-  return newList;
+  return head;
 };
