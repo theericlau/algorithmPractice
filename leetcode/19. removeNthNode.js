@@ -27,6 +27,13 @@ Try to do this in one pass.
  * @return {ListNode}
  */
 
+//Two passes
 var removeNthFromEnd = function (head, n) {
-
+  //first pass go thru the whole list to check how long it is
+  //loop into the list
+    //increment counter
+  //Set pointer to stop at counter -n
+  //loop into the list again til it hits pointer
+    //once it hits the pointer set the next to the next
+  //return head
 };
