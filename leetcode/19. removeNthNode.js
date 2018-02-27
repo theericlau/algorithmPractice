@@ -38,20 +38,21 @@ var removeNthFromEnd = function (head, n) {
     length += 1;
     lead = lead.next;
   }
+  if (length === n) {
+    head = head.next;
+  }
   //Set pointer to stop at counter -n
   let stop = length - n;
   let secondLead = head;
   let count = 0;
   //loop into the list again til it hits pointer
   while (secondLead) {
+    count++;
     if (count === stop) {
       secondLead.next = secondLead.next.next;
     }
-    count++;
     secondLead = secondLead.next;
   }
-    //once it hits the pointer set the next to the next
-  }
-  //return head
+  //once it hits the pointer set the next to the next
   return head;
 };
