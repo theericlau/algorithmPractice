@@ -56,3 +56,28 @@ var removeNthFromEnd = function (head, n) {
   //once it hits the pointer set the next to the next
   return head;
 };
+
+//one Pass
+
+var removeNthFromEndOne = function(head, n) {
+  let tempHead = head;
+  let end = head;
+  let counter = 1;
+  let tempN = n;
+  while (end) {
+    if (!end.next) {
+      if (counter === tempN) {
+        head = head.next;
+        return head;
+      }
+      tempHead.next = tempHead.next.next;
+    }
+    if (n <= 0) {
+      tempHead = tempHead.next;
+    }
+    counter++;
+    end = end.next;
+    n--;
+  }
+  return head;
+}
