@@ -16,13 +16,27 @@ var isValid = (s) => {
     '(' : ')',
   };
   //init a stack
+  let stack = [];
   //loop into the string
+  for (let i = 0; i < s.length; i++ ) {
+    let current = s[i];
     //if current is in the object then push into stack
-    //else
-      //pop the most recent add into stack
-      //check if the popped off string is equal to current
-  //if stack is empty then 
-    //return true
-  // else 
-    //return false
+    if (match.hasOwnProperty(current)) {
+      stack.push(current);
+    } else {
+      //else
+        //pop the most recent add into stack
+        //check if the popped off string is equal to current
+      let lastIndex = stack.pop();
+      if (lastIndex !== match[current]) {
+        return false;
+      }
+    }
+  }
+  //if stack is empty then
+  if (stack.length === 0) {
+    return true;
+  } else {
+    return false;
+  }
 }
