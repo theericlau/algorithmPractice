@@ -9,6 +9,20 @@ The brackets must close in the correct order, "()" and "()[]{}" are all valid bu
  * @param {string} s
  * @return {boolean}
  */
-var isValid = function (s) {
-
-};
+var isValid = (s) => {
+  const match = {
+    '{' : '}',
+    '[' : ']',
+    '(' : ')',
+  };
+  //init a stack
+  //loop into the string
+    //if current is in the object then push into stack
+    //else
+      //pop the most recent add into stack
+      //check if the popped off string is equal to current
+  //if stack is empty then 
+    //return true
+  // else 
+    //return false
+}
