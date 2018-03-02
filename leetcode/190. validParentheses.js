@@ -41,4 +41,5 @@ var isValid = (s) => {
   }
 }
 
+
 console.log(isValid('([)]'))
