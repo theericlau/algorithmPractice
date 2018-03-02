@@ -28,7 +28,7 @@ var isValid = (s) => {
         //pop the most recent add into stack
         //check if the popped off string is equal to current
       let lastIndex = stack.pop();
-      if (lastIndex !== match[current]) {
+      if (match[lastIndex] !== current) {
         return false;
       }
     }
@@ -40,3 +40,5 @@ var isValid = (s) => {
     return false;
   }
 }
+
+console.log(isValid('([)]'))
