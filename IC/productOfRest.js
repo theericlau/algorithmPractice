@@ -16,7 +16,7 @@ Does your function work if the input array contains zeroes? Remember—no divisi
 We only need to allocate one new array of size n.
 
 */
-
+//Naive Solution O(n^2) time O(n) space
 const productOfRest = array => {
   let newArray = [];
   //loop into array keep tracker of current
@@ -29,7 +29,17 @@ const productOfRest = array => {
     }
   }
   //loop into length of the array and if tracker is equal to tracker don't multiply
-  return newArray
+  return newArray;
 }
 
 console.log(productOfRest([1, 7, 3, 4]))
+//One pass O(n) time O(n) space
+
+const productOfRestMod = array => {
+  let newArray = [];
+  let prevSum = 1;
+  //loop into array and set current index of newArray to the prevSum
+  //loop again into the array starting from back
+    //multiply current index of newArray with after the number;
+  return newArray;
+}
