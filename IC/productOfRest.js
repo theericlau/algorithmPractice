@@ -32,14 +32,25 @@ const productOfRest = array => {
   return newArray;
 }
 
-console.log(productOfRest([1, 7, 3, 4]))
+//console.log(productOfRest([1, 7, 3, 4]))
 //One pass O(n) time O(n) space
 
 const productOfRestMod = array => {
   let newArray = [];
-  let prevSum = 1;
+  let prevProd = 1;
+  let afterProd = 1;
   //loop into array and set current index of newArray to the prevSum
+  for (let i = 0; i < array.length; i++) {
+    newArray[i] = prevProd;
+    prevProd *= array[i];
+  }
   //loop again into the array starting from back
+  for (let j = array.length - 1; j >= 0; j--) {
+    newArray[j] *= afterProd;
+    afterProd *= array[j];
+  }
     //multiply current index of newArray with after the number;
   return newArray;
 }
+
+console.log(productOfRestMod([0,7,3,4]))
