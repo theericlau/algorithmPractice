@@ -18,7 +18,18 @@ We only need to allocate one new array of size n.
 */
 
 const productOfRest = array => {
+  let newArray = [];
   //loop into array keep tracker of current
+  for (let i = 0; i < array.length; i++) {
+    newArray[i] = 1;
+    for (let j = 0; j < array.length; j++) {
+      if (j !== i) {
+        newArray[i] *= array[j];
+      }
+    }
+  }
   //loop into length of the array and if tracker is equal to tracker don't multiply
   return newArray
 }
+
+console.log(productOfRest([1, 7, 3, 4]))
