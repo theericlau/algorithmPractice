@@ -17,3 +17,8 @@ We only need to allocate one new array of size n.
 
 */
 
+const productOfRest = array => {
+  //loop into array keep tracker of current
+  //loop into length of the array and if tracker is equal to tracker don't multiply
+  return newArray
+}
