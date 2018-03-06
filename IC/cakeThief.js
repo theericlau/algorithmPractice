@@ -23,3 +23,14 @@ maxDuffelBagValue(cakeTypes, capacity);
 returns 555 (6 of the middle type of cake and 1 of the last type of cake)
 */
 
+let cakeTypes = [
+    { weight: 7, value: 160 },
+    { weight: 3, value: 90 },
+    { weight: 2, value: 15 },
+];
+
+const maxDuffelBagValue = (cakeTypes, capacity) => {
+
+}
+
+console.log(maxDuffelBagValue(cakeTypes, 20));
