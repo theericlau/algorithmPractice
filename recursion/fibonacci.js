@@ -22,7 +22,6 @@ console.log(fibonacci(9));
 
 
 const fibonacciMemo = n => {
-  debugger;
   let memoizedN = {0: 0, 1:1}
   let fibonacci = (nLeft) => {
     if (memoizedN.hasOwnProperty(nLeft)){
@@ -33,8 +32,20 @@ const fibonacciMemo = n => {
       return memoizedN[nLeft];
     }
   }
-  fibonacci(n);
-  return memoizedN[n - 1] + memoizedN[n - 2];
+  return fibonacci(n);
+  // return memoizedN[n - 1] + memoizedN[n - 2];
 }
 
-console.log(fibonacciMemo(4));
+const fibonacciMemo2 = n => {
+  let memoizedN = { 0: 0, 1: 1 }
+  let fibonacci = (nLeft) => {
+    if (!memoizedN.hasOwnProperty(nLeft)) {
+      memoizedN[nLeft] = fibonacci(nLeft - 1) + fibonacci(nLeft - 2);
+    }
+    return memoizedN[nLeft];
+  }
+  return fibonacci(n);
+  // return memoizedN[n - 1] + memoizedN[n - 2];
+}
+
+console.log(fibonacciMemo2(9));
