@@ -26,7 +26,20 @@ var messageParse = (message, length) => {
   return array;
 }
 
+var messageParseSplit = (message, length) => {
+  let array = [];
+  let multiple = 0;
+  let totalSplit = Math.ceil(message.length / length);
+  for (let i = 0; i < totalSplit; i++) {
+    array.push(message.substring(multiple, multiple + length));
+    multiple += length;
+  }
+  return array;
+}
+
+console.log(messageParseSplit(message, 160));
 
 
 
-console.log(messageParse(message, 150));
+
+// console.log(messageParse(message, 150));
