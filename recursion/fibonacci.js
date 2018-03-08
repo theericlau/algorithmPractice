@@ -19,3 +19,22 @@ const fibonacci = n => {
 }
 
 console.log(fibonacci(9));
+
+
+const fibonacciMemo = n => {
+  debugger;
+  let memoizedN = {0: 0, 1:1}
+  let fibonacci = (nLeft) => {
+    if (memoizedN.hasOwnProperty(nLeft)){
+      return memoizedN[nLeft];
+    } else {
+      let result = fibonacci(nLeft - 1) + fibonacci(nLeft - 2);
+      memoizedN[nLeft] = result;
+      return memoizedN[nLeft];
+    }
+  }
+  fibonacci(n);
+  return memoizedN[n - 1] + memoizedN[n - 2];
+}
+
+console.log(fibonacciMemo(4));
