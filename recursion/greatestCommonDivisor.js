@@ -17,7 +17,17 @@ const greatestCommonDivisor = (num1, num2) => {
     return gcd;
 }
 
-console.log(greatestCommonDivisor(27, 10));
+const greatestCommonDivisorRecurse = (num1, num2) => {
+    let min = Math.min(num1, num2);
+    let max = Math.max(num1, num2);
+    if (max % min === 0 ) {
+        return min;
+    } else {
+        return greatestCommonDivisorRecurse(min, max % min);
+    }
+}
+
+console.log(greatestCommonDivisorRecurse(40, 15));
 
 // 36
 // 1: 36
