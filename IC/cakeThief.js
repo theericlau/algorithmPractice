@@ -27,15 +27,34 @@ let cakeTypes = [
     { weight: 7, value: 160 },
     { weight: 3, value: 90 },
     { weight: 2, value: 15 },
+    { weight: 2, value: 400}
 ];
 
 const maxDuffelBagValue = (cakeTypes, capacity) => {
     //initialize the max
+    let max = -Infinity;
+    let smallest = Math.min(...cakeTypes.map(cake => {
+        return cake.weight
+    }));
+    // console.log('small', smallest);
     //create recursive function that checks for capacity left and value
-        //base case to stop the loop4
+    const checkForMax = (capacityLeft, value) => {
+        //base case to stop the loop
+        if (smallest > capacityLeft) {
             //set max to this new value with its bigger than the current max
+            max = Math.max(max, value);
+        }
         //create a loop into cakeTypes
+        for (let i = 0; i < cakeTypes.length; i++) {
+            if (capacityLeft >= cakeTypes[i].weight) {
+                checkForMax(capacityLeft - cakeTypes[i].weight, value + cakeTypes[i].value);
+            }
+        }
+
+    }
     //return the max
+    checkForMax(capacity, 0);
+    return max;
 }
 
 console.log(maxDuffelBagValue(cakeTypes, 20));
