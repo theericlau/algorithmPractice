@@ -30,7 +30,12 @@ let cakeTypes = [
 ];
 
 const maxDuffelBagValue = (cakeTypes, capacity) => {
-
+    //initialize the max
+    //create recursive function that checks for capacity left and value
+        //base case to stop the loop4
+            //set max to this new value with its bigger than the current max
+        //create a loop into cakeTypes
+    //return the max
 }
 
 console.log(maxDuffelBagValue(cakeTypes, 20));
