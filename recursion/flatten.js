@@ -21,6 +21,26 @@ const flatten = array => {
 
 console.log(flatten(check));
 
+
+/*
+Implement a function that flattens a nested array.
+
+flatten([1,[2],[3, [[4]]]]);
+=> [1,2,3,4]
+*/
+// const check = [1, [2], [3, [[4]]]];
+
+
+const flat = (array) => {
+  return array.reduce((acc, curr) => {
+    if (Array.isArray(curr)){
+      return acc.concat(flat(curr));
+    }
+    return acc.concat(curr);
+  }, [])
+}
+
+console.log(flat(check));
 /*
 
 Write a function, `ninetyPercentTime` that takes in a time in seconds and returns a string that is 90% of the original time, rounded to the nearst whole number.
