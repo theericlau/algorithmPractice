@@ -10,6 +10,12 @@ We're going to run this function on our new, super-hip Macbook Pro With Retina D
 
 */
 
-const duplicate = array => {
+//Naive Solution
+const test = [1,2,3,4,5,6,7,1,2]
 
+const duplicate = array => {
+  //initialize the object which will count whether its in the object already
+  //loop in to the array
+    //keep track of how many times the in
+    //if number was already seen move into an array repeated object
 }
