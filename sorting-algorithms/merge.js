@@ -66,10 +66,17 @@ const mergeSort = array => {
   return merge(leftSide, rightSide);
 }
 arr = [1, 10, 3, 5, 8, 14, 2]
+// 1, 10 , 3, 5         8 , 14 ,2
+// 1 10         3, 5
+// 1       10
+
+
+
+
 // console.log(arr.length/2);
 // console.log(arr.slice(0, arr.length / 2))
 // console.log(arr.slice(arr.length / 2))
 
 // console.log(mergeSort([1,10,3,5,8,14,2]));
-// console.log(merge([1,6,8,12], [3,7,8,9,24]));
+console.log(merge([1,6,8,12], [3,7,8,9,24]));
 //Time Complexity O(n);
