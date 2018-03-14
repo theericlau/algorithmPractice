@@ -7,3 +7,11 @@ Note:
 You are not suppose to use the library's sort function for this problem.
 
 */
+
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var sortColors = function (nums) {
+
+}
