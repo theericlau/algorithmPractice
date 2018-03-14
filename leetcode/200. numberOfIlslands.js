@@ -26,5 +26,6 @@ Answer: 3
  * @return {number}
  */
 var numIslands = function (grid) {
-  console.log(grid);
+  //
 };
+
