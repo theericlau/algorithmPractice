@@ -16,6 +16,7 @@ It doesn't matter what you leave beyond the new length.
  * @return {number}
  */
 
+var nums = [1, 1, 2];
 var removeDuplicates = function (nums) {
 
 };
