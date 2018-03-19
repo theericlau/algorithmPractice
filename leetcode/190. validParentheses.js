@@ -14,7 +14,7 @@ var isValid = (s) => {
     '{' : '}',
     '[' : ']',
     '(' : ')',
-  };
+  }; 
   //init a stack
   let stack = [];
   //loop into the string
