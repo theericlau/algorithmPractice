@@ -19,23 +19,39 @@ Try to come up as many solutions as you can, there are at least 3 different ways
 var array = [1, 2, 3, 4, 5, 6, 7];
 [4, 2, 3, 1, 5, 6, 7]
 let array1 = [1];
+// var rotate = function (nums, k) {
+//   let kPoint = nums.length - k;
+//   let begin = 0;
+//   while (kPoint < nums.length && kPoint !== begin) {
+//     swap(nums, kPoint, begin);
+//     swap(nums, kPoint, k);
+//     begin++;
+//     kPoint++;
+//     k++;
+//   }
+
+//   return nums;
+// };
+
+// var swap = (array, one, two) => {
+//   [array[one], array[two]] = [array[two], array[one]];
+// }
+
+// console.log(rotate(array, 4))
+// console.log(rotate(array1, 1));
+
 var rotate = function (nums, k) {
-  let kPoint = nums.length - k;
-  let begin = 0;
-  while (kPoint < nums.length && kPoint !== begin) {
-    swap(nums, kPoint, begin);
-    swap(nums, kPoint, k);
-    begin++;
-    kPoint++;
-    k++;
-  }
-
-  return nums;
-};
-
-var swap = (array, one, two) => {
-  [array[one], array[two]] = [array[two], array[one]];
+  k %= nums.length;
+  reverse(nums, 0, nums.length - 1);
+  reverse(nums, 0, k - 1);
+  reverse(nums, k, nums.length - 1);
 }
 
-console.log(rotate(array, 4))
-// console.log(rotate(array1, 1));
+var reverse = (nums, begin, end) => {
+  while (begin <= end) {
+    [nums[begin], nums[end]] = [nums[end], nums[begin]];
+    begin++;
+    end--;
+  }
+}
+console.log(rotate(array, 3));
