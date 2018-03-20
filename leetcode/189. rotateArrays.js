@@ -15,6 +15,27 @@ Try to come up as many solutions as you can, there are at least 3 different ways
  * @param {number} k
  * @return {void} Do not return anything, modify nums in-place instead.
  */
-var rotate = function (nums, k) {
 
+var array = [1, 2, 3, 4, 5, 6, 7];
+[4, 2, 3, 1, 5, 6, 7]
+let array1 = [1];
+var rotate = function (nums, k) {
+  let kPoint = nums.length - k;
+  let begin = 0;
+  while (kPoint < nums.length && kPoint !== begin) {
+    swap(nums, kPoint, begin);
+    swap(nums, kPoint, k);
+    begin++;
+    kPoint++;
+    k++;
+  }
+
+  return nums;
 };
+
+var swap = (array, one, two) => {
+  [array[one], array[two]] = [array[two], array[one]];
+}
+
+console.log(rotate(array, 4))
+// console.log(rotate(array1, 1));
