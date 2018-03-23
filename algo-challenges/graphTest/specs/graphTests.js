@@ -27,10 +27,33 @@ describe('graph', function () {
     graph.deleteNode('A');
     expect(graph.contains('B')).to.equal(true);
     expect(graph.contains('A')).to.equal(false);
-  })
+  });
+
+  it('should create edges between two nodes', function () {
+    graph.addNode(2);
+    graph.addNode(1);
+    graph.addNode(3);
+    graph.addEdge(3, 2);
+    expect(graph.hasEdge(3, 2)).to.equal(true);
+    expect(graph.hasEdge(3, 1)).to.equal(false);
+  });
+
+  it('should remove edges between nodes', function () {
+    graph.addNode(4);
+    graph.addNode(5);
+    graph.addEdge(5, 4);
+    expect(graph.hasEdge(4, 5)).to.equal(true);
+    graph.deleteEdge(5, 4);
+    expect(graph.hasEdge(4, 5)).to.equal(false);
+  });
+
+  it('should remove edges between nodes when a node is removed', function () {
+    graph.addNode(4);
+    graph.addNode(5);
+    graph.addEdge(5, 4);
+    expect(graph.hasEdge(4, 5)).to.equal(true);
+    graph.deleteNode(5);
+    expect(graph.hasEdge(4, 5)).to.equal(false);
+  });
 
 });
-
-describe('chia', function(){
-  var chia;
-})
