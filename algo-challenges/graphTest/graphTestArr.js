@@ -69,7 +69,7 @@ class Graph {
     if (!this.contains(fromNode)) {
       return false;
     }
-    return !!this._nodes[fromNode].edges[toNode];
+    return !!this.storage[fromNode].edges[toNode];
   }
 
   addEdge(fromNode, toNode){
@@ -78,8 +78,8 @@ class Graph {
     }
 
     // Add an edge to each node pointing to the other
-    this._nodes[fromNode].edges[toNode] = toNode;
-    this._nodes[toNode].edges[fromNode] = fromNode;
+    this.storage[fromNode].edges[toNode] = toNode;
+    this.storage[toNode].edges[fromNode] = fromNode;
   }
 
   deleteEdge(fromNode, toNode){
@@ -88,24 +88,82 @@ class Graph {
     }
 
     // Remove edges from each node's edge list
-    delete this._nodes[fromNode].edges[toNode];
-    delete this._nodes[toNode].edges[fromNode];
+    delete this.storage[fromNode].edges[toNode];
+    delete this.storage[toNode].edges[fromNode];
   }
 
   printDirects(){
-
+    const storage = this.storage;
+    for (let node in storage) {
+      let keys = Object.keys(storage[node].edges);
+      if (keys.length > 0) {
+        for (let edge in storage[node].edges){
+          console.log([node, edge]);
+        }
+      } else {
+        console.log([node]);
+      }
+    }
   }
 
   printIndirects(){
+    const storage = this.storage;
+    let all = [];
+    let length = Object.keys(storage).length;
 
+    const generateIndirect = (total, node, currentArr) => {
+      currentArr.push(node);
+      let keys = Object.keys(storage[node].edges);
+
+      //Push when there's no more indirect or when max jump hits 5
+      if (currentArr.length === 6 || !keys.length || keys.every(elem => currentArr.indexOf(elem) > -1)) {
+        all.push(currentArr);
+        return;
+      }
+      for (let i = 0; i < keys.length; i++) {
+        if (currentArr.indexOf(keys[i]) >= 0) {
+          continue;
+        } else {
+          // Recurse through each permutation
+          generateIndirect(total, keys[i], currentArr.concat());
+        }
+      }
+    }
+    for (let node in this.storage) {
+      generateIndirect(all, node, []);
+    }
+    return all;
+  }
+
+  generateNode(){
+    const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    for (let i = 0; i < alpha.length; i++) {
+      this.addNode(alpha[i]);
+    }
   }
 }
 
-const connects = new Graph();
-connects.addNode('A');
-connects.addNode('B');
-console.log(connects.addNode('A'));
-console.log(connects);
-connects
-console.log(connects);
 
+const connects = new Graph();
+connects.generateNode(connects);
+
+connects.addEdge('A','B');
+connects.addEdge('B', 'C');
+connects.addEdge('C', 'D');
+connects.addEdge('C', 'E');
+connects.addEdge('E', 'F');
+connects.addEdge('F', 'A');
+connects.addEdge('B', 'E');
+// console.log(connects.printDirects());
+console.log(connects.printIndirects());
+
+
+
+var b = ["A","B","C","D"];
+var a = ["C"];
+
+// console.log(b.filter((node) => {
+//   return a.indexOf(node) > -1;
+// }).length === a.length)
+
+console.log(a.every(elem => b.indexOf(elem) > -1))
