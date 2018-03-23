@@ -45,12 +45,16 @@ class Graph {
 
   addNode(node){
     if (this.storage[node]) {
-
+      return 'already in storage';
+    } else {
+      this.storage[node] = { edges : {}}
     }
   }
 
   deleteNode(node){
-
+    if (this.storage[node]) {
+      delete this.storage[node];
+    }
   }
 
   addEdge(node){
@@ -70,4 +74,10 @@ class Graph {
   }
 }
 
+const connects = new Graph();
+connects.addNode('A');
+connects.addNode('B');
+console.log(connects);
+connects
+console.log(connects);
 
