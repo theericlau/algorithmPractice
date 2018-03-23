@@ -57,6 +57,10 @@ class Graph {
     }
   }
 
+  contains(node) {
+
+  }
+  hasEdge(node) {}
   addEdge(node){
 
   }
