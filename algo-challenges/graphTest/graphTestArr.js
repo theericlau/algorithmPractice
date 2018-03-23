@@ -38,4 +38,36 @@ F2 (eg of a person not related to anyone)
 etc
 */
 
+class Graph {
+  constructor(){
+    this.storage = {}
+  }
+
+  addNode(node){
+    if (this.storage[node]) {
+
+    }
+  }
+
+  deleteNode(node){
+
+  }
+
+  addEdge(node){
+
+  }
+
+  deleteEdge(node){
+
+  }
+
+  printDirects(){
+
+  }
+
+  printIndirects(){
+
+  }
+}
+
 
