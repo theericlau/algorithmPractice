@@ -21,4 +21,16 @@ describe('graph', function () {
     expect(graph.contains('A')).to.equal(true);
   });
 
+  it('should delete node from storage when node is deleted', function(){
+    graph.addNode('A');
+    graph.addNode('B');
+    graph.deleteNode('A');
+    expect(graph.contains('B')).to.equal(true);
+    expect(graph.contains('A')).to.equal(false);
+  })
+
 });
+
+describe('chia', function(){
+  var chia;
+})

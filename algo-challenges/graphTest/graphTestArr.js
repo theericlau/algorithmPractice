@@ -52,21 +52,44 @@ class Graph {
   }
 
   deleteNode(node){
-    if (this.storage[node]) {
+    if (this.contains(node)) {
+      // Removes edges between node to be deleted and all other connected nodes.
+      for (let targetNode in this.storage[node].edges) {
+        this.deleteEdge(node, targetNode);
+      }
       delete this.storage[node];
     }
   }
 
   contains(node) {
-
-  }
-  hasEdge(node) {}
-  addEdge(node){
-
+    return this.storage[node] ? true : false;
   }
 
-  deleteEdge(node){
+  hasEdge(fromNode, toNode) {
+    if (!this.contains(fromNode)) {
+      return false;
+    }
+    return !!this._nodes[fromNode].edges[toNode];
+  }
 
+  addEdge(fromNode, toNode){
+    if (!this.contains(fromNode) || !this.contains(toNode)) {
+      return;
+    }
+
+    // Add an edge to each node pointing to the other
+    this._nodes[fromNode].edges[toNode] = toNode;
+    this._nodes[toNode].edges[fromNode] = fromNode;
+  }
+
+  deleteEdge(fromNode, toNode){
+    if (!this.contains(fromNode) || !this.contains(toNode)) {
+      return;
+    }
+
+    // Remove edges from each node's edge list
+    delete this._nodes[fromNode].edges[toNode];
+    delete this._nodes[toNode].edges[fromNode];
   }
 
   printDirects(){
@@ -81,6 +104,7 @@ class Graph {
 const connects = new Graph();
 connects.addNode('A');
 connects.addNode('B');
+console.log(connects.addNode('A'));
 console.log(connects);
 connects
 console.log(connects);
