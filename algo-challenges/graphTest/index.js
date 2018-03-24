@@ -38,7 +38,7 @@ F2 (eg of a person not related to anyone)
 etc
 */
 
-class Graph {
+export default class Graph {
   constructor() {
     this.storage = {};
   }
@@ -144,7 +144,7 @@ class Graph {
 
     const generateIndirect = (total, node, currentArr) => {
       currentArr.push(node);
-      let keys = Object.keys(storage[node].edges);
+      let keys = Object.keys(storage[node[0]][node].edges);
 
       //Push when there's no more indirect or when max jump hits 5
       if (currentArr.length === 6 || !keys.length || keys.every(elem => currentArr.indexOf(elem) > -1)) {
@@ -160,38 +160,33 @@ class Graph {
         }
       }
     }
-    for (let node in this.storage) {
-      generateIndirect(all, node, []);
+    for (let node in storage) {
+      for (let name in storage[node]){
+        generateIndirect(all, name, []);
+      }
     }
     return all;
   }
 
   generateNode() {
     const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < alpha.length; i++) {
       let multiple = getRandomInt(3) + 1;
       while (multiple > 0) {
         this.addNode(`${alpha[i]}`);
         multiple--;
       }
     }
-    // for (let i = 0; i < 6; i++) {
-    //   this.addNode(alpha[i]);
-    // }
   }
 
   generateEdges(){
     let keys = Object.keys(this.storage);
-    console.log(keys);
-    for (let i= 0; i < 20; i++) {
-      let toNum = getRandomInt(keys.length);
-      let fromNum = getRandomInt(keys.length);
-      if (keys[fromNum][0] === keys[toNum][0]) {
-        continue;
-      } else {
-        console.log('added 1', );
-        this.addEdge(keys[toNum], keys[fromNum]);
-      }
+    //Randomly select toNode and fromNode
+    for (let i= 0; i < 150; i++) {
+      let nodes = _.sample(keys, 2);
+      let toNode = _.sample(Object.keys(this.storage[nodes[0]]));
+      let fromNode = _.sample(Object.keys(this.storage[nodes[1]]));
+      this.addEdge(fromNode, toNode);
     }
   }
 
@@ -204,32 +199,32 @@ function getRandomInt(max) {
 
 
 const connects = new Graph();
-connects.addNode('A');
-connects.addNode('A');
-connects.addNode('B');
-connects.addNode('C');
-connects.addNode('C');
-connects.addNode('D');
-connects.addNode('E');
-connects.addNode('F');
+// connects.addNode('A');
+// connects.addNode('A');
+// connects.addNode('B');
+// connects.addNode('C');
+// connects.addNode('C');
+// connects.addNode('D');
+// connects.addNode('E');
+// connects.addNode('F');
 
 
 // console.log(connects.contains('A1'));
 // connects.deleteNode('A2');
 // console.log(connects.contains('A2'));
 // console.log(connects.storage);
-// connects.generateNode();
-// connects.generateEdges();
+connects.generateNode();
+connects.generateEdges();
 console.log(connects.storage);
-
-connects.addEdge('A1', 'B1');
-connects.addEdge('A1', 'D1');
-connects.addEdge('B1', 'C1');
-connects.addEdge('C1', 'D1');
-connects.addEdge('C1', 'E1');
-connects.addEdge('C2', 'E1');
-connects.addEdge('E1', 'F1');
-connects.addEdge('F1', 'A1');
-connects.addEdge('B1', 'E1');
+// connects.addEdge('A1', 'B1');
+// connects.addEdge('A1', 'D1');
+// connects.addEdge('B1', 'C1');
+// connects.addEdge('C1', 'D1');
+// connects.addEdge('C1', 'E1');
+// connects.addEdge('C2', 'E1');
+// connects.addEdge('E1', 'F1');
+// connects.addEdge('F1', 'A1');
+// connects.addEdge('B1', 'E1');
 console.log('Direct', connects.printDirects());
-// console.log('Indirect', connects.printIndirects());
+console.log('Indirect', connects.printIndirects());
+
