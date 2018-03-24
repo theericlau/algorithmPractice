@@ -14,6 +14,9 @@ describe('graph', function () {
     expect(graph.hasEdge).to.be.a('function');
     expect(graph.addEdge).to.be.a('function');
     expect(graph.deleteEdge).to.be.a('function');
+    expect(graph.printDirects).to.be.a('function');
+    expect(graph.printIndirects).to.be.a('function');
+    expect(graph.generateNode).to.be.a('function');
   });
 
   it('should store nodes when nodes are added', function() {
@@ -30,30 +33,43 @@ describe('graph', function () {
   });
 
   it('should create edges between two nodes', function () {
-    graph.addNode(2);
-    graph.addNode(1);
-    graph.addNode(3);
-    graph.addEdge(3, 2);
-    expect(graph.hasEdge(3, 2)).to.equal(true);
-    expect(graph.hasEdge(3, 1)).to.equal(false);
+    graph.addNode('A');
+    graph.addNode('B');
+    graph.addNode('C');
+    graph.addEdge('B', 'C');
+    expect(graph.hasEdge('B', 'C')).to.equal(true);
+    expect(graph.hasEdge('C', 'A')).to.equal(false);
   });
 
   it('should remove edges between nodes', function () {
-    graph.addNode(4);
-    graph.addNode(5);
-    graph.addEdge(5, 4);
-    expect(graph.hasEdge(4, 5)).to.equal(true);
-    graph.deleteEdge(5, 4);
-    expect(graph.hasEdge(4, 5)).to.equal(false);
+    graph.addNode('D');
+    graph.addNode('E');
+    graph.addEdge('D', 'E');
+    expect(graph.hasEdge('D', 'E')).to.equal(true);
+    graph.deleteEdge('D', 'E');
+    expect(graph.hasEdge('D', 'E')).to.equal(false);
   });
 
   it('should remove edges between nodes when a node is removed', function () {
-    graph.addNode(4);
-    graph.addNode(5);
-    graph.addEdge(5, 4);
-    expect(graph.hasEdge(4, 5)).to.equal(true);
-    graph.deleteNode(5);
-    expect(graph.hasEdge(4, 5)).to.equal(false);
+    graph.addNode('C');
+    graph.addNode('D');
+    graph.addEdge('C', 'D');
+    expect(graph.hasEdge('C', 'D')).to.equal(true);
+    graph.deleteNode('D');
+    expect(graph.hasEdge('C', 'D')).to.equal(false);
   });
+
+  /*
+  TODO:
+  1. create tests for generate, printDirect, printIndirect
+  */
+  it('should print all direct edges', function(){
+    graph.addNode('A');
+    graph.addNode('B');
+    graph.addNode('C');
+    graph.addEdge('A', 'B');
+    graph.addEdge('B', 'C');
+    expect(graph.printDirects()).to.include([['A', 'B'], ['B','C'], ['C','A'], ['C','B']]);
+  })
 
 });

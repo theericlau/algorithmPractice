@@ -39,19 +39,21 @@ etc
 */
 
 class Graph {
-  constructor(){
-    this.storage = {}
+  constructor() {
+    this.storage = {};
   }
 
-  addNode(node){
+  // Add a node to the graph, passing in the node's value.
+  addNode(node) {
     if (this.storage[node]) {
-      return 'already in storage';
+      return 'Already in storage';
     } else {
-      this.storage[node] = { edges : {}}
+      this.storage[node] = { edges: {} };
     }
   }
 
-  deleteNode(node){
+  // Removes a node from the graph.
+  deleteNode(node) {
     if (this.contains(node)) {
       // Removes edges between node to be deleted and all other connected nodes.
       for (let targetNode in this.storage[node].edges) {
@@ -61,10 +63,13 @@ class Graph {
     }
   }
 
+
+  // Return a boolean value indicating if the value passed to contains is represented in the graph.
   contains(node) {
     return this.storage[node] ? true : false;
   }
 
+  // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
   hasEdge(fromNode, toNode) {
     if (!this.contains(fromNode)) {
       return false;
@@ -72,7 +77,8 @@ class Graph {
     return !!this.storage[fromNode].edges[toNode];
   }
 
-  addEdge(fromNode, toNode){
+  // Connects two nodes in a graph by adding an edge between them.
+  addEdge(fromNode, toNode) {
     if (!this.contains(fromNode) || !this.contains(toNode)) {
       return;
     }
@@ -82,7 +88,8 @@ class Graph {
     this.storage[toNode].edges[fromNode] = fromNode;
   }
 
-  deleteEdge(fromNode, toNode){
+  // Remove an edge between any two specified (by value) nodes.
+  deleteEdge(fromNode, toNode) {
     if (!this.contains(fromNode) || !this.contains(toNode)) {
       return;
     }
@@ -92,21 +99,23 @@ class Graph {
     delete this.storage[toNode].edges[fromNode];
   }
 
-  printDirects(){
+  printDirects() {
     const storage = this.storage;
+    let all = [];
     for (let node in storage) {
       let keys = Object.keys(storage[node].edges);
       if (keys.length > 0) {
-        for (let edge in storage[node].edges){
-          console.log([node, edge]);
+        for (let edge in storage[node].edges) {
+          all.push([node, edge]);
         }
       } else {
-        console.log([node]);
+        all.push([node]);
       }
     }
+    return all;
   }
 
-  printIndirects(){
+  printIndirects() {
     const storage = this.storage;
     let all = [];
     let length = Object.keys(storage).length;
@@ -135,35 +144,53 @@ class Graph {
     return all;
   }
 
-  generateNode(){
+  generateNode() {
     const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    for (let i = 0; i < alpha.length; i++) {
-      this.addNode(alpha[i]);
+    for (let i = 0; i < 3; i++) {
+      let multiple = getRandomInt(3) + 1;
+      while (multiple > 0) {
+        this.addNode(`${alpha[i] + multiple}`);
+        multiple--;
+      }
+    }
+    // for (let i = 0; i < 6; i++) {
+    //   this.addNode(alpha[i]);
+    // }
+  }
+
+  generateEdges() {
+    let keys = Object.keys(this.storage);
+    console.log(keys);
+    for (let i= 0; i < 20; i++) {
+      let toNum = getRandomInt(keys.length);
+      let fromNum = getRandomInt(keys.length);
+      if (keys[fromNum][0] === keys[toNum][0]) {
+        continue;
+      } else {
+        console.log('added 1', );
+        this.addEdge(keys[toNum], keys[fromNum]);
+      }
     }
   }
+
+
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
 }
 
 
 const connects = new Graph();
-connects.generateNode(connects);
+connects.generateNode();
+connects.generateEdges();
 
-connects.addEdge('A','B');
-connects.addEdge('B', 'C');
-connects.addEdge('C', 'D');
-connects.addEdge('C', 'E');
-connects.addEdge('E', 'F');
-connects.addEdge('F', 'A');
-connects.addEdge('B', 'E');
-// console.log(connects.printDirects());
-console.log(connects.printIndirects());
-
-
-
-var b = ["A","B","C","D"];
-var a = ["C"];
-
-// console.log(b.filter((node) => {
-//   return a.indexOf(node) > -1;
-// }).length === a.length)
-
-console.log(a.every(elem => b.indexOf(elem) > -1))
+// connects.addEdge('A', 'B');
+// connects.addEdge('B', 'C');
+// connects.addEdge('C', 'D');
+// connects.addEdge('C', 'E');
+// connects.addEdge('E', 'F');
+// connects.addEdge('F', 'A');
+// connects.addEdge('B', 'E');
+console.log('Direct', connects.printDirects());
+console.log('Indirect', connects.printIndirects());
