@@ -45,11 +45,20 @@ class Graph {
 
   // Add a node to the graph, passing in the node's value.
   addNode(node) {
-    if (this.storage[node]) {
-      return 'Already in storage';
-    } else {
-      this.storage[node] = { edges: {} };
-    }
+    // if (this.storage[node]) {
+    //   return 'Already in storage';
+    // } else {
+    //   this.storage[node] = { edges: {} };
+    // }
+
+    // if (Object.keys(this.storage[node]).length === 3) {
+    //   return "Too many names used";
+    // } else {
+    //   let number = 1 || Object.keys(this.storage[node].length) + 1;
+    //   // console.log(`${node + number}`)
+    //   console.log('sup')
+    //   // this.storage[node] = {`${node + number}`: {}};
+    // }
   }
 
   // Removes a node from the graph.
@@ -158,7 +167,7 @@ class Graph {
     // }
   }
 
-  generateEdges() {
+  generateEdges(){
     let keys = Object.keys(this.storage);
     console.log(keys);
     for (let i= 0; i < 20; i++) {
@@ -182,8 +191,10 @@ function getRandomInt(max) {
 
 
 const connects = new Graph();
-connects.generateNode();
-connects.generateEdges();
+connects.addNode('A');
+console.log(connects.storage);
+// connects.generateNode();
+// connects.generateEdges();
 
 // connects.addEdge('A', 'B');
 // connects.addEdge('B', 'C');
@@ -192,5 +203,5 @@ connects.generateEdges();
 // connects.addEdge('E', 'F');
 // connects.addEdge('F', 'A');
 // connects.addEdge('B', 'E');
-console.log('Direct', connects.printDirects());
-console.log('Indirect', connects.printIndirects());
+// console.log('Direct', connects.printDirects());
+// console.log('Indirect', connects.printIndirects());
