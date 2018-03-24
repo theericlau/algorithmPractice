@@ -47,27 +47,27 @@ describe('graph', function () {
     graph.addNode('A');
     graph.addNode('B');
     graph.addNode('C');
-    graph.addEdge('B', 'C');
-    expect(graph.hasEdge('B', 'C')).to.equal(true);
-    expect(graph.hasEdge('C', 'A')).to.equal(false);
+    graph.addEdge('B1', 'C1');
+    expect(graph.hasEdge('B1', 'C1')).to.equal(true);
+    expect(graph.hasEdge('C1', 'A1')).to.equal(false);
   });
 
   it('should remove edges between nodes', function () {
     graph.addNode('D');
     graph.addNode('E');
-    graph.addEdge('D', 'E');
-    expect(graph.hasEdge('D', 'E')).to.equal(true);
-    graph.deleteEdge('D', 'E');
-    expect(graph.hasEdge('D', 'E')).to.equal(false);
+    graph.addEdge('D1', 'E1');
+    expect(graph.hasEdge('D1', 'E1')).to.equal(true);
+    graph.deleteEdge('D1', 'E1');
+    expect(graph.hasEdge('D1', 'E1')).to.equal(false);
   });
 
   it('should remove edges between nodes when a node is removed', function () {
     graph.addNode('C');
     graph.addNode('D');
-    graph.addEdge('C', 'D');
-    expect(graph.hasEdge('C', 'D')).to.equal(true);
-    graph.deleteNode('D');
-    expect(graph.hasEdge('C', 'D')).to.equal(false);
+    graph.addEdge('C1', 'D1');
+    expect(graph.hasEdge('C1', 'D1')).to.equal(true);
+    graph.deleteNode('D1');
+    expect(graph.hasEdge('C1', 'D1')).to.equal(false);
   });
 
   /*
