@@ -21,15 +21,26 @@ describe('graph', function () {
 
   it('should store nodes when nodes are added', function() {
     graph.addNode('A');
-    expect(graph.contains('A')).to.equal(true);
+    expect(graph.contains('A1')).to.equal(true);
   });
+
+  it('should add node to wherever there is an open node', function () {
+    graph.addNode('A');
+    graph.addNode('A');
+    graph.addNode('A');
+    graph.deleteNode('A2');
+    expect(graph.contains('A2')).to.equal(false);
+    graph.addNode('A');
+    expect(graph.contains('A2')).to.equal(true);
+  });
+
 
   it('should delete node from storage when node is deleted', function(){
     graph.addNode('A');
-    graph.addNode('B');
-    graph.deleteNode('A');
-    expect(graph.contains('B')).to.equal(true);
-    expect(graph.contains('A')).to.equal(false);
+    graph.addNode('A');
+    graph.deleteNode('A1');
+    expect(graph.contains('A1')).to.equal(false);
+    expect(graph.contains('A2')).to.equal(true);
   });
 
   it('should create edges between two nodes', function () {
