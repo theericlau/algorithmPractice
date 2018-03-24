@@ -48,11 +48,15 @@ class Graph {
     if (!this.storage[node]){
       this.storage[node] = { [`${node + 1}`]: { edges: {}}};
     } else {
-      if (Object.keys(this.storage[node]).length === 3) {
+      let key = Object.keys(this.storage[node]);
+      if (key.length === 3) {
         return "Too many names used";
       } else {
-        let number = Object.keys(this.storage[node]).length + 1;
-        this.storage[node][`${node + number}`] = { edges: {} };
+        for (let i = 1; i <= 3; i++) {
+          if (key.indexOf(`${node + i}`) < 0){
+            this.storage[node][`${node + i}`] = { edges: {} };
+          }
+        }
       }
     }
 
@@ -62,17 +66,25 @@ class Graph {
   deleteNode(node) {
     if (this.contains(node)) {
       // Removes edges between node to be deleted and all other connected nodes.
-      for (let targetNode in this.storage[node].edges) {
+      for (let targetNode in this.storage[node[0]][node].edges) {
         this.deleteEdge(node, targetNode);
       }
-      delete this.storage[node];
+      if (this.numNode(node[0]) === 1) {
+        delete this.storage[node[0]];
+      }
+      delete this.storage[node[0]][node];
     }
+  }
+
+  numNode(node) {
+    let length = Object.keys(this.storage[node]).length;
+    return length;
   }
 
 
   // Return a boolean value indicating if the value passed to contains is represented in the graph.
   contains(node) {
-    return this.storage[node] ? true : false;
+    return this.storage[node[0]][node] ? true : false;
   }
 
   // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
@@ -192,8 +204,9 @@ connects.addNode('A');
 connects.addNode('A');
 connects.addNode('A');
 
-connects.addNode('A');
-
+console.log(connects.contains('A1'));
+connects.deleteNode('A2');
+console.log(connects.contains('A2'));
 console.log(connects.storage);
 // connects.generateNode();
 // connects.generateEdges();
