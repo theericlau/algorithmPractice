@@ -45,20 +45,17 @@ class Graph {
 
   // Add a node to the graph, passing in the node's value.
   addNode(node) {
-    // if (this.storage[node]) {
-    //   return 'Already in storage';
-    // } else {
-    //   this.storage[node] = { edges: {} };
-    // }
+    if (!this.storage[node]){
+      this.storage[node] = { [`${node + 1}`]: { edges: {}}};
+    } else {
+      if (Object.keys(this.storage[node]).length === 3) {
+        return "Too many names used";
+      } else {
+        let number = Object.keys(this.storage[node]).length + 1;
+        this.storage[node][`${node + number}`] = { edges: {} };
+      }
+    }
 
-    // if (Object.keys(this.storage[node]).length === 3) {
-    //   return "Too many names used";
-    // } else {
-    //   let number = 1 || Object.keys(this.storage[node].length) + 1;
-    //   // console.log(`${node + number}`)
-    //   console.log('sup')
-    //   // this.storage[node] = {`${node + number}`: {}};
-    // }
   }
 
   // Removes a node from the graph.
@@ -192,6 +189,11 @@ function getRandomInt(max) {
 
 const connects = new Graph();
 connects.addNode('A');
+connects.addNode('A');
+connects.addNode('A');
+
+connects.addNode('A');
+
 console.log(connects.storage);
 // connects.generateNode();
 // connects.generateEdges();
