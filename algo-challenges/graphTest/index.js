@@ -55,6 +55,7 @@ class Graph {
         for (let i = 1; i <= 3; i++) {
           if (key.indexOf(`${node + i}`) < 0){
             this.storage[node][`${node + i}`] = { edges: {} };
+            break;
           }
         }
       }
@@ -71,8 +72,9 @@ class Graph {
       }
       if (this.numNode(node[0]) === 1) {
         delete this.storage[node[0]];
+      } else{
+        delete this.storage[node[0]][node];
       }
-      delete this.storage[node[0]][node];
     }
   }
 
@@ -92,7 +94,7 @@ class Graph {
     if (!this.contains(fromNode)) {
       return false;
     }
-    return !!this.storage[fromNode].edges[toNode];
+    return !!this.storage[fromNode[0]][fromNode].edges[toNode];
   }
 
   // Connects two nodes in a graph by adding an edge between them.
@@ -102,8 +104,8 @@ class Graph {
     }
 
     // Add an edge to each node pointing to the other
-    this.storage[fromNode].edges[toNode] = toNode;
-    this.storage[toNode].edges[fromNode] = fromNode;
+    this.storage[fromNode[0]][fromNode].edges[toNode] = toNode;
+    this.storage[toNode[0]][toNode].edges[fromNode] = fromNode;
   }
 
   // Remove an edge between any two specified (by value) nodes.
@@ -113,8 +115,8 @@ class Graph {
     }
 
     // Remove edges from each node's edge list
-    delete this.storage[fromNode].edges[toNode];
-    delete this.storage[toNode].edges[fromNode];
+    delete this.storage[fromNode[0]][fromNode].edges[toNode];
+    delete this.storage[toNode[0]][toNode].edges[fromNode];
   }
 
   printDirects() {
@@ -164,10 +166,10 @@ class Graph {
 
   generateNode() {
     const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 4; i++) {
       let multiple = getRandomInt(3) + 1;
       while (multiple > 0) {
-        this.addNode(`${alpha[i] + multiple}`);
+        this.addNode(`${alpha[i]}`);
         multiple--;
       }
     }
@@ -200,16 +202,17 @@ function getRandomInt(max) {
 
 
 const connects = new Graph();
-connects.addNode('A');
-connects.addNode('A');
-connects.addNode('A');
+// connects.addNode('A');
+// connects.addNode('A');
+// connects.addNode('A');
 
-console.log(connects.contains('A1'));
-connects.deleteNode('A2');
-console.log(connects.contains('A2'));
-console.log(connects.storage);
-// connects.generateNode();
+// console.log(connects.contains('A1'));
+// connects.deleteNode('A2');
+// console.log(connects.contains('A2'));
+// console.log(connects.storage);
+connects.generateNode();
 // connects.generateEdges();
+console.log(connects.storage);
 
 // connects.addEdge('A', 'B');
 // connects.addEdge('B', 'C');
