@@ -123,13 +123,15 @@ class Graph {
     const storage = this.storage;
     let all = [];
     for (let node in storage) {
-      let keys = Object.keys(storage[node].edges);
-      if (keys.length > 0) {
-        for (let edge in storage[node].edges) {
-          all.push([node, edge]);
+      for (let name in storage[node]) {
+        let keys = Object.keys(storage[node][name].edges);
+        if (keys.length > 0) {
+          keys.forEach((key)=> {
+            all.push([name, key])
+          })
+        } else {
+          all.push([name]);
         }
-      } else {
-        all.push([node]);
       }
     }
     return all;
@@ -202,24 +204,32 @@ function getRandomInt(max) {
 
 
 const connects = new Graph();
-// connects.addNode('A');
-// connects.addNode('A');
-// connects.addNode('A');
+connects.addNode('A');
+connects.addNode('A');
+connects.addNode('B');
+connects.addNode('C');
+connects.addNode('C');
+connects.addNode('D');
+connects.addNode('E');
+connects.addNode('F');
+
 
 // console.log(connects.contains('A1'));
 // connects.deleteNode('A2');
 // console.log(connects.contains('A2'));
 // console.log(connects.storage);
-connects.generateNode();
+// connects.generateNode();
 // connects.generateEdges();
 console.log(connects.storage);
 
-// connects.addEdge('A', 'B');
-// connects.addEdge('B', 'C');
-// connects.addEdge('C', 'D');
-// connects.addEdge('C', 'E');
-// connects.addEdge('E', 'F');
-// connects.addEdge('F', 'A');
-// connects.addEdge('B', 'E');
-// console.log('Direct', connects.printDirects());
+connects.addEdge('A1', 'B1');
+connects.addEdge('A1', 'D1');
+connects.addEdge('B1', 'C1');
+connects.addEdge('C1', 'D1');
+connects.addEdge('C1', 'E1');
+connects.addEdge('C2', 'E1');
+connects.addEdge('E1', 'F1');
+connects.addEdge('F1', 'A1');
+connects.addEdge('B1', 'E1');
+console.log('Direct', connects.printDirects());
 // console.log('Indirect', connects.printIndirects());
