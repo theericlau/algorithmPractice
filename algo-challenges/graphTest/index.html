@@ -5,19 +5,60 @@
   <title>Connections</title>
   <link rel="stylesheet" type="text/css" href="style.css" />
   <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-  <script type="text/javascript" src="index.js" async></script>
-  <script type="text/javascript" src="app.js" async></script>
+  <script src="./lib/jquery/jquery.js"></script>
+
 </head>
 <body>
-  <div>
-    <input type="text">
-    <button id="buttonCreate">Button</button>
+  <div class="row">
+    <div class="column right">
+      Directs
+      <ul class="directAll"></ul>
+    </div>
+    <div class="column left">
+      Indirects
+      <ul class="indirectAll"></ul>
+    </div>
   </div>
-  <div id="direct">
+  <script type="text/javascript" src="app.js"></script>
+  <script type="text/javascript" src="index.js"></script>
+  <script type="text/javascript">
+    const connects = new Graph();
+    connects.generateNode();
+    connects.generateEdges();
 
-  </div>
-  <div id="indirect">
+    function appendDirect() {
+      let direct = connects.printDirects();
+      for (let i = 0; i < direct.length; i++ ) {
+        if (!direct[i][1]){
+          $('.directAll').append(`<li>${direct[i][0]}</li>`);
+        } else {
+          $('.directAll').append(`<li>${direct[i][0]} <--> ${direct[i][1]} </li>`);
+        }
+      }
+      console.log('Direct', direct)
+    };
 
-  </div>
+    function appendIndirect() {
+      let indirect = connects.printIndirects();
+      for (let i = 0; i < indirect.length; i++) {
+        let string = "";
+        let j = 0;
+        while (j < indirect[i].length){
+          if (j+ 1 !== indirect[i].length){
+            string = string.concat(`${indirect[i][j]} -->`);
+          } else {
+            string = string.concat(indirect[i][j]);
+          }
+          j++;
+        }
+        $('.indirectAll').append(`<li>${string}</li>`);
+      }
+      console.log('Indirect', indirect)
+    };
+
+    appendDirect();
+    appendIndirect();
+
+  </script>
 </body>
 </html>
