@@ -18,5 +18,16 @@ In a complete binary tree every level, except possibly the last, is completely f
  * @return {number}
  */
 var countNodes = function (root) {
-
+  count = 0;
+  let traverse = (node) => {
+    if (node.left) {
+      traverse(node.left);
+    }
+    if (node.right) {
+      traverse(node.right);
+    }
+    count++;
+  }
+  traverse(node);
+  return count;
 };
