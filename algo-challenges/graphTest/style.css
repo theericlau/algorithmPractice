@@ -1,0 +1,30 @@
+li {
+  list-style:none;
+}
+
+.row{
+  /* display:table; */
+  display: flex;
+}
+
+/* #column-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+} */
+
+.column{
+  flex: 50%;
+  /* float: left; */
+  padding: 10px
+}
+
+.left{
+  background-color: grey;
+  /* width: 25%; */
+}
+
+.right{
+  /* width: 75%; */
+  background-color: #bbb;
+}
