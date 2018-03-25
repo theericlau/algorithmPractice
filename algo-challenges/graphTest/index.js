@@ -38,7 +38,7 @@ F2 (eg of a person not related to anyone)
 etc
 */
 
-export default class Graph {
+class Graph {
   constructor() {
     this.storage = {};
   }
@@ -182,7 +182,7 @@ export default class Graph {
   generateEdges(){
     let keys = Object.keys(this.storage);
     //Randomly select toNode and fromNode
-    for (let i= 0; i < 150; i++) {
+    for (let i= 0; i < 50; i++) {
       let nodes = _.sample(keys, 2);
       let toNode = _.sample(Object.keys(this.storage[nodes[0]]));
       let fromNode = _.sample(Object.keys(this.storage[nodes[1]]));
@@ -197,8 +197,7 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
-
-const connects = new Graph();
+// const connects = new Graph();
 // connects.addNode('A');
 // connects.addNode('A');
 // connects.addNode('B');
@@ -213,9 +212,9 @@ const connects = new Graph();
 // connects.deleteNode('A2');
 // console.log(connects.contains('A2'));
 // console.log(connects.storage);
-connects.generateNode();
-connects.generateEdges();
-console.log(connects.storage);
+// connects.generateNode();
+// connects.generateEdges();
+// console.log(connects.storage);
 // connects.addEdge('A1', 'B1');
 // connects.addEdge('A1', 'D1');
 // connects.addEdge('B1', 'C1');
@@ -225,6 +224,6 @@ console.log(connects.storage);
 // connects.addEdge('E1', 'F1');
 // connects.addEdge('F1', 'A1');
 // connects.addEdge('B1', 'E1');
-console.log('Direct', connects.printDirects());
-console.log('Indirect', connects.printIndirects());
+// console.log('Direct', connects.printDirects());
+// console.log('Indirect', connects.printIndirects());
 
