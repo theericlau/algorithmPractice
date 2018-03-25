@@ -7,7 +7,7 @@ describe('graph', function () {
     graph = new Graph();
   });
 
-  it('should have methods named "addNode", "contains", "deleteNode", "addEdge", "hasEdge", and "deleteEdge"', function () {
+  it('should have methods named "addNode", "contains", "deleteNode", "addEdge", "hasEdge", "deleteEdge", "generateNode" and "generateEdges"', function () {
     expect(graph.addNode).to.be.a('function');
     expect(graph.contains).to.be.a('function');
     expect(graph.deleteNode).to.be.a('function');
@@ -17,6 +17,7 @@ describe('graph', function () {
     expect(graph.printDirects).to.be.a('function');
     expect(graph.printIndirects).to.be.a('function');
     expect(graph.generateNode).to.be.a('function');
+    expect(graph.generateEdges).to.be.a('function');
   });
 
   it('should store nodes when nodes are added', function() {
@@ -69,18 +70,5 @@ describe('graph', function () {
     graph.deleteNode('D1');
     expect(graph.hasEdge('C1', 'D1')).to.equal(false);
   });
-
-  /*
-  TODO:
-  1. create tests for generate, printDirect, printIndirect
-  */
-  it('should print all direct edges', function(){
-    graph.addNode('A');
-    graph.addNode('B');
-    graph.addNode('C');
-    graph.addEdge('A', 'B');
-    graph.addEdge('B', 'C');
-    expect(graph.printDirects()).to.include([['A', 'B'], ['B','C'], ['C','A'], ['C','B']]);
-  })
 
 });
