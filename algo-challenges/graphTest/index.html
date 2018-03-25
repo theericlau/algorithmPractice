@@ -12,10 +12,12 @@
   <div class="row">
     <div class="column right">
       Directs
+      <div class="totalDirect"></div>
       <ul class="directAll"></ul>
     </div>
     <div class="column left">
       Indirects
+      <div class="totalIndirect"></div>
       <ul class="indirectAll"></ul>
     </div>
   </div>
@@ -34,7 +36,7 @@
           $('.directAll').append(`<li>${direct[i][0]} <--> ${direct[i][1]} </li>`);
         }
       }
-      console.log('Direct', direct)
+      $('.totalDirect').html(`<span>Total Relationships: ${direct.length}</span>`);
     };
 
     function appendIndirect() {
@@ -52,7 +54,7 @@
         }
         $('.indirectAll').append(`<li>${string}</li>`);
       }
-      console.log('Indirect', indirect)
+      $('.totalIndirect').html(`<span>Total Relationships: ${indirect.length}</span>`);
     };
 
     appendDirect();
