@@ -26,6 +26,11 @@ Answer: 3
  * @return {number}
  */
 var numIslands = function (grid) {
-  //
+  //init total
+  //loop into each array
+    //check if adjacent are also 1s
+      //if current is 1 increment total
+        //recurse to turn adjacent ones into 0
+  //return total
 };
 
