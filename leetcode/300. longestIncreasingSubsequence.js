@@ -52,6 +52,7 @@ var lengthOfLIS = function (nums) {
 //dynamic approach
 var lengthOfLIS2 = function(nums) {
   //init memoized way
+  debugger;
   //init max
   let memoize = [];
   let max = 0;
