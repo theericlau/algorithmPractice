@@ -17,5 +17,9 @@ For example,
  * @return {string[]}
  */
 var findRepeatedDnaSequences = function (s) {
-
+  //loop into strings
+    //store every substring in hash
+    //if exists then increment in hash
+  //loop in hash to check which dna has multiple
+  //return list
 };
