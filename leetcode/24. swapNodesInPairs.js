@@ -23,11 +23,14 @@ var swapPairs = function (head) {
   //make a loop that
   //swap next with current
   //make current into current.next.next
+
+  //checks if head exists or if next exists
   if (!head || !head.next) {
     return head;
   }
   let next = head.next;
   let current = head;
+
   while (current && current.next) {
     let nextNode = current.next.next;
     swap(current, current.next);
@@ -39,6 +42,7 @@ var swapPairs = function (head) {
 };
 
 let swap = (node1, node2) => {
+  //only set node1.next to the 4th node if node2.next and node2.next.next don't equal to null
   if (node2.next && node2.next.next) {
     node1.next = node2.next.next;
   } else {
