@@ -19,10 +19,10 @@ Your algorithm should use only constant space. You may not modify the values in 
  * @return {ListNode}
  */
 var swapPairs = function (head) {
-  debugger;
+  // debugger;
   //make a loop that
-    //swap next with current
-    //make current into current.next.next
+  //swap next with current
+  //make current into current.next.next
   if (!head || !head.next) {
     return head;
   }
@@ -39,7 +39,7 @@ var swapPairs = function (head) {
 };
 
 let swap = (node1, node2) => {
-  if (node2.next){
+  if (node2.next && node2.next.next) {
     node1.next = node2.next.next;
   } else {
     node1.next = node2.next;
@@ -47,6 +47,7 @@ let swap = (node1, node2) => {
   node2.next = node1;
 
 }
+
 
 
 function ListNode(val) {
