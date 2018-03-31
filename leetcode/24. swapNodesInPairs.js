@@ -19,5 +19,9 @@ Your algorithm should use only constant space. You may not modify the values in 
  * @return {ListNode}
  */
 var swapPairs = function (head) {
+  //make a loop that
+    //swap next with current
+    //make current into current.next.next
 
+  //return head's next
 };
