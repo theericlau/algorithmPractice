@@ -16,6 +16,15 @@ Supposed the linked list is 1 -> 2 -> 3 -> 4 and you are given the third node wi
  * @return {void} Do not return anything, modify node in-place instead.
  */
 var deleteNode = function (node) {
+  //keep next node reference
+  let next = node.next;
 
+  if (next) {
+    node.val = next.val;
+    node.next = next.next;
+  } else {
+    node.val = null;
+    node.next = null;
+  }
 
 };
