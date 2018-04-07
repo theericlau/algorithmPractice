@@ -4,6 +4,16 @@ const findSecondLargest = (rootNode) => {
   }
   let secondLargest = rootNode;
   let recurse = (node) => {
+    if (!node) {
+      return;
+    }
+    if (node.left && !node.right) {
+      secondLargest = findLargest(node.left);
+    }
+    if (node.right && !node.right.right && !node.right.left) {
+      secondLargest = node;
+    }
+    recurse(node.right);
     // if (!node.right && !node.left){
     //   secondLargest = node
     // }
@@ -19,6 +29,16 @@ const findSecondLargest = (rootNode) => {
   }
   recurse(rootNode);
   return secondLargest;
+}
+
+const findLargest = (node) => {
+  if (!node) {
+    throw new Error("Tree must have 1 node")
+  }
+  if (node.right) {
+    return findLargest(node.right);
+  }
+  return node
 }
 
 function BinaryTreeNode(value) {
