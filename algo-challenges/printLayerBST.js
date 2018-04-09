@@ -14,12 +14,32 @@ const printByLayerBST = (node) => {
     if (queue1[0].right){
       queue2.push(queue1[0].right);
     }
-    console.log(queue1[0].value);
     queue1.shift();
     if (queue1.length === 0){
       queue1 = queue2;
       queue2 = [];
     }
+  }
+}
+
+const printBottomUp = (node) => {
+  if (!node) {
+    return;
+  }
+  let queue = [node];
+  let stack = [];
+  while (queue.length > 0) {
+    let current = queue.shift();
+    stack.push(current);
+    if (current.right) {
+      queue.push(current.right);
+    }
+    if (current.left){
+      queue.push(current.left);
+    }
+  }
+  while (stack.length > 0){
+    console.log(stack.pop());
   }
 }
 
@@ -48,3 +68,5 @@ one.left.insertLeft(4)
 one.left.insertRight(5);
 one.right.insertLeft(6);
 one.right.insertRight(7);
+
+printBottomUp(one);
