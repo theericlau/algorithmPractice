@@ -18,5 +18,16 @@ A = [3,2,1,0,4], return false.
  * @return {boolean}
  */
 var canJump = function (nums) {
+  let current = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (current >= i) {
+      current = Math.max(current, nums[i]+ i);
+      if (current >= nums.length - 1){
+        return true;
+      }
+    } else {
+      return false;
+    }
 
+  }
 };
