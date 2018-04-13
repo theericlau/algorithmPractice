@@ -23,10 +23,30 @@ var productExceptSelf = function (nums) {
       if (i === j) {
         continue;
       } else {
-        total *= j;
+        total *= nums[j];
       }
     }
     result.push(total);
   }
   return result;
 };
+
+var productExcept = function (nums) {
+  let result = [];
+
+  result[0] = 1;
+  for ( let i = 1; i < nums.length; i++) { //[1,1,2,6]
+    result[i] = result[i - 1] * nums[i - 1];
+  }
+
+  let current = 1;
+  for (let i = nums.length - 2; i >= 0; i--) { //i = 1
+    current *= nums[i+1];
+    result[i] = result[i] * current;
+  }
+  return result;
+}
+
+array = [1, 2, 3, 4];
+
+console.log(productExcept(array));
