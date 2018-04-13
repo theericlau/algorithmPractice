@@ -59,4 +59,58 @@ const getFactoryWithVIP = (array) => {
   }).map((data) => data['factory name'])
 }
 
-console.log(getFactoryWithVIP(factories));
+// console.log(getFactoryWithVIP(factories));
+
+const divide = (num, den) => {
+
+  debugger;
+  let temp = 1;
+  let quotient = 0;
+
+  while (den <= num) {
+    den <<= 1;
+    temp <<= 1;
+  }
+
+  //printf("%d %d\n",de,temp,nu);
+  while (temp > 1) {
+    den >>= 1;
+    temp >>= 1;
+
+    if (num >= den) {
+      num -= den;
+      //printf("%d %d\n",quotient,temp);
+      quotient += temp;
+    }
+  }
+
+  return quotient;
+}
+
+console.log(divide(22, 3));
+
+
+class GuitarAmp {
+  constructor({ cabinet = 'spruce', distortion = '1', volume = '0' } = {}) {
+    Object.assign(this, {
+      cabinet, distortion, volume
+    });
+  }
+}
+
+class BassAmp extends GuitarAmp {
+  constructor(options = {}) {
+    super(options);
+    this.lowCut = options.lowCut;
+  }
+}
+
+class ChannelStrip extends BassAmp {
+  constructor(options = {}) {
+    super(options);
+    this.inputLevel = options.inputLevel;
+  }
+}
+
+var hi = GuitarAmp();
+console.log(hi);
