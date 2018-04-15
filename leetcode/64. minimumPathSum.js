@@ -15,5 +15,20 @@ Given the above grid map, return 7. Because the path 1→3→1→1→1 minimizes
  * @return {number}
  */
 var minPathSum = function (grid) {
+  //keep track of total
+  //do a breadth first search
 
 };
+
+var grid =
+[[1, 3, 1],
+[1, 5, 1],
+[4, 2, 1]];
+
+var grid =
+[[1, 1, 1],
+[4, 2, 1],
+[4, 2, 6],
+[4, 1, 1]];
+
+console.log(minPathSum(grid));
