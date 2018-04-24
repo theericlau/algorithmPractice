@@ -7,5 +7,32 @@ Create a method to parse out all the children elements inside the string given a
 */
 
 const parseTagFromHTML = (targetTag, html) => {
-
+  const beginTag = `<${targetTag}`;
+  const endTag = `</${targetTag}`;
+  let current = 0;
+  let startIndex = 0;
+  let endIndex;
+  let result = [];
+  for (let i = 0; i < html.length; i++) {
+    let endIndex = i;
+    if (html.slice(startIndex, endIndex).includes(beginTag)) {
+      let beginning = searchBeginningTagIndex(html.slice(endIndex));
+      // let findClosing = searchClosingTagIndex()
+    }
+  }
 };
+
+const searchClosingTagIndex = (html) => {
+
+}
+
+const searchBeginningTagIndex = (html) => {
+  for (let i = 0; i < html.length; i++) {
+    if (html[i] === '>') {
+      return i;
+    }
+  }
+  return null;
+}
+
+console.log(parseTagFromHTML('h1', string));
