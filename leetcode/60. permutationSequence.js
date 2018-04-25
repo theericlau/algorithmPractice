@@ -33,5 +33,27 @@ Output: "2314"
  * @return {string}
  */
 var getPermutation = function (n, k) {
-
+  //n is the number from
+  //init the n permutation
+  debugger;
+  let values = "";   //123
+  let result = [];
+  for (let i = 1; i <= n; i++) {
+    values = values + i;
+  };
+  const permute = (currentPermutation, currentValues) => {
+    if (currentValues.length === 0) {
+      result.push(currentPermutation);
+      return;
+    }
+    for (let i = 0; i < currentValues.length; i++) {
+      let current = currentValues[i];
+      let newValue = currentValues.slice(0, i) + currentValues.slice(i+1);  //
+      permute(currentPermutation + current, newValue);  //1, 23
+    }
+  }
+  permute("", values);  //"", 3
+  return result[k];
 };
+
+console.log(getPermutation(3, 3));
