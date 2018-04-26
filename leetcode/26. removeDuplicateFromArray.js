@@ -74,3 +74,20 @@ var removeDuplicates = function(nums) {
 //   return j + 1;
 // };
 console.log(removeDuplicates(nums));
+var nums = [1, 1, 2, 3, 3, 5];
+
+const removeDuplicates2nd = (nums) => {
+  let prev = nums[0]; //1
+  let current = 1;
+  while (current < nums.length) {
+    if (nums[current] === prev) {
+      nums.splice(current, 1);
+    } else {
+      prev = nums[current];
+      current++;
+    }
+  }
+  return nums;
+}
+
+console.log(removeDuplicates2nd(nums));
