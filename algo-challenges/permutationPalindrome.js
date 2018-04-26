@@ -53,3 +53,31 @@ function hasPalindrome(s) {
 // console.log(hasPalindrome('civic'), 'should return true');
 // console.log(hasPalindrome('c'), 'should return true');
 // console.log(hasPalindrome(''), 'should return false');
+
+function hasPalindrome2nd(s) {
+  let setOfPairs = new Set();
+  if (s.length === 0) {
+    return false;
+  }
+  for (let i = 0; i < s.length; i++) {
+    if (setOfPairs.has(s[i])){
+      setOfPairs.delete(s[i]);
+    } else {
+      setOfPairs.add(s[i]);
+    }
+  }
+  // console.log(setOfPx/airs);
+  if (setOfPairs.size > 1) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+
+
+console.log(hasPalindrome2nd('civic'), 'should return true');
+console.log(hasPalindrome2nd('c'), 'should return true');
+console.log(hasPalindrome2nd('ivicc'), 'should return true');
+console.log(hasPalindrome2nd('civil'), 'should return false');
+console.log(hasPalindrome2nd(''), 'should return false');
