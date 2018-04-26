@@ -49,4 +49,28 @@ var permute = function (nums) {
     return getPerm(init, nums, 0);
 };
 
-console.log(permute([1,2]));
+const permute2nd = (array) => {
+  let results = [];
+
+  const innerPermute = (currentPermute, arrayLeft) => {
+    if (arrayLeft.length === 0) {
+      const uniqPermutation = currentPermute.slice();
+      results.push(uniqPermutation);
+      return;
+    }
+    for (let i = 0; i < arrayLeft.length; i++) {
+      //either use push pop method or create a shallow copy of the array so that it'll preserve original array
+      let current = [arrayLeft[i]];
+      currentPermute.push(current);
+      // let newPermute = currentPermute.slice().concat(current);
+      let newArray = arrayLeft.slice(0, i).concat(arrayLeft.slice(i+1));
+      innerPermute(currentPermute, newArray);
+      currentPermute.pop();
+    }
+  }
+  innerPermute([], array);
+  return results;
+}
+console.log(permute2nd([1,2,3]));
+
+
