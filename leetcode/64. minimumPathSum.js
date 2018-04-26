@@ -38,9 +38,27 @@ var minPathSum = function (grid) {
       dpGrid[i][j] = Math.min(dpGrid[i][j - 1], dpGrid[i-1][j]) + grid[i][j];
     }
   }
-  console.log(dpGrid);
-
+  // debugger;
+  let row = grid.length - 1;
+  let col = grid[0].length - 1;
+  return dpGrid[row][col];
+  //To get path
+  // return printPath(row, col, dpGrid, grid);
 };
+
+const printPath = (row, col, dpGrid, grid) =>{
+  let path = [];
+  while (row >= 0 && col >= 0) {
+    current = grid[row][col];
+    path.unshift(current);
+    if (row > 0 && dpGrid[row][col] - current === dpGrid[row - 1][col]) {
+      row--;
+    } else {
+      col--;
+    }
+  }
+  return path;
+}
 
 var grid =
 [[1, 3, 1],
