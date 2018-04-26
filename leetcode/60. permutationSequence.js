@@ -35,7 +35,7 @@ Output: "2314"
 var getPermutation = function (n, k) {
   //n is the number from
   //init the n permutation
-  debugger;
+  // debugger;
   let values = "";   //123
   let result = [];
   for (let i = 1; i <= n; i++) {
@@ -53,7 +53,7 @@ var getPermutation = function (n, k) {
     }
   }
   permute("", values);  //"", 3
-  return result[k];
+  return result[k-1];
 };
 
 console.log(getPermutation(3, 3));
