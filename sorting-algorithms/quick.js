@@ -26,14 +26,17 @@ Variants:
 Iterate through array and if element <= pivot, swap element before pivot location
 */
 const quickSort = array => {
+  if (array.length === 0) {
+    return array;
+  }
   let pivot = array[array.length - 1];
   let left, right;
 
   array = partition(array);
   let newIndex = array.indexOf(pivot);
   if (array.length !== 0) {
-    left = partition(array.slice(0, newIndex));
-    right = partition(array.slice(newIndex, array.length));
+    left = quickSort(array.slice(0, newIndex));
+    right = quickSort(array.slice(newIndex, array.length));
   }
   return [...left, ...right];
 }
@@ -69,7 +72,7 @@ const swap = (array, index1, index2) => {
   return array;
 }
 
-const example = [2,7,3,9,6,4,5];
+const example = [5,3,6,1,8,2,4];
 console.log(quickSort(example));
 
 //why quickSort - worst case is n^2 but its really unlikely
