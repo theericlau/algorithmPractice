@@ -31,5 +31,19 @@ function TreeNode(val) {
 }
 
 var kthSmallest = function (root, k) {
+  let result = [];
 
+  let traverse = (node) => {
+    if (node.left) {
+      traverse(node.left);
+    }
+    result.push(node.val)
+    if (node.right) {
+      traverse(node.right);
+    }
+  }
+
+  traverse(root);
+  return result[k - 1];
 };
+
