@@ -47,3 +47,22 @@ var kthSmallest = function (root, k) {
   return result[k - 1];
 };
 
+var kthSmallestConstantSpace = function (root, k) {
+  let counter = 0;
+  let value;
+
+  let traverse = (node) => {
+    if (node.left) {
+      traverse(node.left);
+    }
+    counter +=1;
+    if (counter === k) {
+      value = node.val;
+    }
+    if (node.right) {
+      traverse(node.right);
+    }
+  }
+  traverse(root);
+  return value;
+};
