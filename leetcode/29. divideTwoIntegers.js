@@ -31,5 +31,19 @@ Assume we are dealing with an environment which could only store integers within
  * @return {number}
  */
 var divide = function (dividend, divisor) {
+  let dividendAbs = Math.abs(dividend);
+  let divisorAbs = Math.abs(divisor);
+  let negative = false;
+  let result = 0;
+  if (dividend < 0 || divisor < 0) {
+    negative = dividend < 0 && divisor < 0 ? false : true;
+  }
+  while (dividendAbs - divisorAbs >= 0) {
+    dividendAbs -= divisorAbs;
+    result++;
+  }
 
+  return negative ? result *= -1 : result;
 };
+
+console.log(divide(-10, -1));
